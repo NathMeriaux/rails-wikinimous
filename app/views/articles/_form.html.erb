@@ -1,0 +1,19 @@
+<%= form_for(@article) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.label :content %>
+  <%= f.hidden_field :content %>
+  <div id="editor"></div>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+ <script>
+    var editor = ace.edit("editor")
+    //editor.session.setMode(ace.require("ace/mode/markdown").Mode);
+    editor.session.setMode(ace.require("ace/mode/javascript").Mode);
+    editor.getSession().on('change', function(e) {
+      $('#article_content').val(editor.getValue());
+    })
+  </script>
